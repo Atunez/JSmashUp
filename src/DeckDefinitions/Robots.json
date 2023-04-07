@@ -1,0 +1,17 @@
+{
+  "Minions": {
+    "Nukebot": 1,
+    "Warbot": 2,
+    "Hoverbot": 3,
+    "Zapbot": 2,
+    "Microbot Alpha": 1,
+    "Microbot Archive": 1,
+    "Microbot Fixer": 2,
+    "Microbot Guard": 2,
+    "Microbot Reclaimer": 2
+  },
+  "Actions": {
+    "Tech Center": 2
+  },
+  "Bases": ["Factory 436-1337", "The Central Brain"]
+}
