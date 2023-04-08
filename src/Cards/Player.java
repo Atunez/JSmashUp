@@ -11,10 +11,33 @@ public class Player {
     private ArrayList<Card> discardedCards;
     private ArrayList<Turn> playerTurns;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Turn> getPlayerTurns() {
+        return playerTurns;
+    }
+
+    public void setPlayerTurns(ArrayList<Turn> playerTurns) {
+        this.playerTurns = playerTurns;
+    }
+
+    public ArrayList<Deck> getPlayerDecks() {
+        return playerDecks;
+    }
+
+    public void addDeckToPlayer(Deck deck) {
+        this.playerDecks.add(deck);
+    }
+
+    private ArrayList<Deck> playerDecks;
+
     public Player(String name){
         this.totalVP = 0;
         this.name = name;
         this.playerTurns = new ArrayList<>();
+        this.playerDecks = new ArrayList<>();
     }
 
     public void setTotalVP(int totalVP) {
