@@ -3,6 +3,7 @@ package Cards;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
+import java.lang.reflect.Constructor;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.Map;
 
 public class Deck {
     private ArrayList<Card> nonBaseCards;
-    private ArrayList<Card> baseCards;
 
     private String deckSet;
 
@@ -34,40 +34,42 @@ public class Deck {
         String fileJSON = getFileInformation(deckName);
         Map<String, JsonElement> deckDefintion = new JsonParser().parse(fileJSON).getAsJsonObject().asMap();
 
-        ArrayList<Card> bases = new ArrayList<>();
-        ArrayList<Card> nonbases = new ArrayList<>();
+        ArrayList<Card> cardsInDeck = new ArrayList<>();
 
         for(String entry: deckDefintion.keySet()){
-            if(entry.equalsIgnoreCase("Bases")){
-
+            if(entry.equalsIgnoreCase("Set")){
+                this.deckSet = deckDefintion.get(entry).getAsString();
             }else{
                 Map<String, JsonElement> classSpecifics = deckDefintion.get(entry).getAsJsonObject().asMap();
                 for(String cardName: classSpecifics.keySet()){
                     int count = classSpecifics.get(cardName).getAsInt();
-                    for(int i = 0; i < count; i++){
-                        if(classSpecifics.equals("Minions")){
-
-                        }else{
-
+                    // Need better regex..
+                    String className = cardName.replaceAll("^?!([a-zA-Z0-9]*)$", "").replace(" ", "").replace("\'", "");
+                    try {
+                        Constructor<Card> c = (Constructor<Card>) Class.forName("Cards." + deckName + "." + className).getDeclaredConstructors()[0];
+                        for(int i = 0; i < count; i++){
+                            cardsInDeck.add(c.newInstance(owner));
                         }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }
         }
 
-        if(nonbases.size() != 20){
-            System.out.println("Error! Deck Size isn't 20");
+        if(cardsInDeck.size() != 20){
+            System.out.println("Error! Deck Size isn't 20, its: " + cardsInDeck.size());
+            System.out.println(cardsInDeck);
         }
 
-        this.baseCards = bases;
-        this.nonBaseCards = nonbases;
-    }
-
-    public ArrayList<Card> getBaseCards(){
-        return this.baseCards;
+        this.nonBaseCards = cardsInDeck;
     }
 
     public ArrayList<Card> getNonBaseCards(){
         return this.nonBaseCards;
+    }
+
+    public String getDeckSet(){
+        return this.deckSet;
     }
 }
