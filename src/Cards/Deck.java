@@ -12,6 +12,8 @@ public class Deck {
     private ArrayList<Card> nonBaseCards;
     private ArrayList<Card> baseCards;
 
+    private String deckSet;
+
     public Deck(String deckName, Player owner){
         generateDeckFromDefinition(deckName, owner);
     }

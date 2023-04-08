@@ -13,5 +13,5 @@
   "Actions": {
     "Tech Center": 2
   },
-  "Bases": ["Factory 436-1337", "The Central Brain"]
+  "Set": "Core Set"
 }

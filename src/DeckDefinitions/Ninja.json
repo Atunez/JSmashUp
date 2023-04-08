@@ -1,0 +1,19 @@
+{
+  "Minions": {
+    "Ninja Master": 1,
+    "Tiger Assassin": 2,
+    "Shinobi": 3,
+    "Ninja Acolyte": 4
+  },
+  "Actions": {
+    "Smoke Bomb": 1,
+    "Infiltrate": 2,
+    "Seeing Stars": 2,
+    "Disguise": 1,
+    "Assassination": 1,
+    "Poison": 1,
+    "Hidden Ninja": 1,
+    "Way Of Deception": 1
+  },
+  "Set": "Core Set"
+}

@@ -1,0 +1,19 @@
+{
+  "Minions": {
+    "Zombie Lord": 1,
+    "Grave Digger": 2,
+    "Tenacious Z": 3,
+    "Walker": 4
+  },
+  "Actions": {
+    "Lend A Hand": 1,
+    "They Keep Coming": 2,
+    "Grave Robbing": 2,
+    "Outbreak": 1,
+    "Mall Crawl": 1,
+    "They're Coming To Get You": 1,
+    "Not Enough Bullets": 1,
+    "Overrun": 1
+  },
+  "Set": "Core Set"
+}

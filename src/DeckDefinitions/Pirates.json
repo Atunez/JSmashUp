@@ -1,0 +1,19 @@
+{
+  "Minions": {
+    "Pirate King": 1,
+    "Buccaneer": 2,
+    "Saucy Wench": 3,
+    "First Mate": 4
+  },
+  "Actions": {
+    "Full Sail": 1,
+    "Dinghy": 2,
+    "Broadside": 2,
+    "Swashbuckling": 1,
+    "Cannon": 1,
+    "Powderkeg": 1,
+    "Sea Dogs": 1,
+    "Shanghai": 1
+  },
+  "Set": "Core Set"
+}
