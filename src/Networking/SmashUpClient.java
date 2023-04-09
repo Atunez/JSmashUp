@@ -3,7 +3,6 @@ package Networking;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import com.esotericsoftware.minlog.Log;
 
 import java.util.Scanner;
 
@@ -25,8 +24,15 @@ public class SmashUpClient {
             }
 
             public void received(Connection c, Object obj){
-                System.out.println("We Got Something....");
-                System.out.println(obj);
+                if(obj instanceof Network.StringInput){
+                    String output = ((Network.StringInput) obj).stringinput;
+                    System.out.println(output);
+                    switch (((Network.StringInput) obj).intent){
+                        case "REJOIN" -> {
+                            sendNick();
+                        }
+                    }
+                }
             }
         }));
 
@@ -39,9 +45,12 @@ public class SmashUpClient {
             e.printStackTrace();
         }
 
+        sendNick();
+    }
+
+    public void sendNick(){
         System.out.println("What will be your Nickname?");
         String inp = kb.nextLine();
-
         Network.StringInput nick = new Network.StringInput();
         nick.stringinput = inp;
         nick.intent = "NICK";
@@ -49,7 +58,6 @@ public class SmashUpClient {
     }
 
     public static void main(String[] args){
-        Log.set(Log.LEVEL_DEBUG);
         SmashUpClient client = new SmashUpClient();
 
         while(true){

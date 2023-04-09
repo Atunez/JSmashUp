@@ -3,7 +3,6 @@ package Networking;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
-import com.esotericsoftware.minlog.Log;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -16,16 +15,16 @@ public class SmashUpServer {
     public int numberOfPlayers;
     static Scanner kb = new Scanner(System.in);
 
-    public SmashUpServer(int numberOfPlayers) throws IOException {
+    public SmashUpServer(int numberOfPlayers, String nickname) throws IOException {
         this.numberOfPlayers = numberOfPlayers;
+        this.usersConnected = new HashSet<>();
+        this.usersConnected.add(nickname);
         this.server = new Server();
 
         Network.register(this.server);
 
         server.addListener(new Listener(){
             public void received(Connection c, Object obj){
-                System.out.println("We Got Something....");
-                System.out.println(obj);
                 if(obj instanceof Network.StringInput){
                     switch (((Network.StringInput) obj).intent){
                         case "NICK":
@@ -42,6 +41,7 @@ public class SmashUpServer {
                                 rj.intent = "REJOIN";
                                 rj.stringinput = "Server has this name!";
                                 c.sendTCP(rj);
+                                break;
                             }
                             usersConnected.add(((Network.StringInput) obj).stringinput);
                             System.out.println("One User Connected....");
@@ -65,9 +65,8 @@ public class SmashUpServer {
     }
 
     public static void main(String[] args) throws IOException {
-        Log.set(Log.LEVEL_DEBUG);
-        System.out.println("How many players will join? (Include yourself)");
-        SmashUpServer server = new SmashUpServer(kb.nextInt());
+        System.out.println("How many players will join? (Include yourself) Give your nickname afterwards");
+        SmashUpServer server = new SmashUpServer(kb.nextInt(), kb.nextLine());
 
     }
 }
