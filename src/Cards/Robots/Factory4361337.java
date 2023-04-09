@@ -11,13 +11,13 @@ import java.util.ArrayList;
 public class Factory4361337 extends Base {
     // Factory 436-1337 - breakpoint 25 - VPs: 2 2 1 - When this base scores, the winner gains 1 VP for every 5 power that player has here. FAQ
     public Factory4361337(){
-
+        super(25, new int[]{2,2,1,0});
     }
 
     @Override
     public <T extends Signal> void handleSignal(Signals signal, T card) {
         switch (signal){
-            case SCORE -> {
+            case POSTSCORE -> {
                 // Find Best Score
                 int maxPlayerPower = -1;
                 // Players who got the best score...

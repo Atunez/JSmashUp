@@ -22,7 +22,7 @@ public class Deck {
     }
 
 
-    private String getFileInformation(String deckName){
+    protected static String getFileInformation(String deckName){
         String output = "{}";
         String baseDirectory = System.getProperty("user.dir");
         String toDeckDefinition = "\\src\\DeckDefinitions\\" + deckName + ".json";
