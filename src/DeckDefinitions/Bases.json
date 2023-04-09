@@ -1,3 +1,8 @@
 {
-  "Core Set": ["Ninja Dojo", "Temple Of Goju", "The Grey Opal", "Tortuga", "Factory 436-1337", "The Central Brain", "Evans City Cemetery", "Rhodes Plaza Mall"]
+  "Core Set": {
+    "Ninjas": ["Ninja Dojo", "Temple Of Goju"],
+    "Pirates": ["The Grey Opal", "Tortuga"],
+    "Robots": ["Factory 436-1337", "The Central Brain"],
+    "Zombies": ["Evans City Cemetery", "Rhodes Plaza Mall"]
+  }
 }

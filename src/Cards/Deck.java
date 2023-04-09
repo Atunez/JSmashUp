@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Deck {
-    private ArrayList<Card> nonBaseCards;
+    // Minion and Action Cards
+    private ArrayList<Card> MACards;
+
+    private Titan titan;
 
     private String deckSet;
 
@@ -39,11 +42,17 @@ public class Deck {
         for(String entry: deckDefintion.keySet()){
             if(entry.equalsIgnoreCase("Set")){
                 this.deckSet = deckDefintion.get(entry).getAsString();
-            }else{
+            } else if (entry.equalsIgnoreCase("Titan")) {
+                String cardName = deckDefintion.get(entry).getAsString();
+                try {
+                    this.titan = (Titan) Class.forName("Cards." + deckName + "." + cardName.replaceAll("[^0-9a-zA-Z]*", "")).getDeclaredConstructors()[0].newInstance(owner);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else{
                 Map<String, JsonElement> classSpecifics = deckDefintion.get(entry).getAsJsonObject().asMap();
                 for(String cardName: classSpecifics.keySet()){
                     int count = classSpecifics.get(cardName).getAsInt();
-                    // Need better regex..
                     String className = cardName.replaceAll("[^0-9a-zA-Z]*", "");
                     try {
                         Constructor<Card> c = (Constructor<Card>) Class.forName("Cards." + deckName + "." + className).getDeclaredConstructors()[0];
@@ -62,12 +71,14 @@ public class Deck {
             System.out.println(cardsInDeck);
         }
 
-        this.nonBaseCards = cardsInDeck;
+        this.MACards = cardsInDeck;
     }
 
-    public ArrayList<Card> getNonBaseCards(){
-        return this.nonBaseCards;
+    public ArrayList<Card> getMACards(){
+        return this.MACards;
     }
+
+    public Titan getTitan() { return this.titan; }
 
     public String getDeckSet(){
         return this.deckSet;
