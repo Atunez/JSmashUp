@@ -51,7 +51,6 @@ public class IOInteractions {
         for(String s: pickedDecks){
             avaliableDecks.remove(s);
         }
-        Scanner kb = new Scanner(System.in);
         while(true){
             System.out.println("Pick a deck from the following decks:");
             System.out.println(avaliableDecks);
@@ -62,6 +61,11 @@ public class IOInteractions {
                 System.out.println("Deck Not available, name has to match.");
             }
         }
+    }
 
+    public static Base getBaseInField(){
+        System.out.println("Pick a base from the following bases on the field (Pick Index):");
+        ArrayList<Base> allBases = Field.getField().getInPlayBases();
+        return allBases.get(getNumInRange(0, allBases.size() - 1));
     }
 }

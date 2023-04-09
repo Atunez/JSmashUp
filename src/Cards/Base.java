@@ -44,6 +44,6 @@ public class Base implements Signal {
 
     @Override
     public <T extends Signal> void handleSignal(Signals signal, T card) {
-        Signal.super.handleSignal(signal, card);
+        return;
     }
 }

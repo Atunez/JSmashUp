@@ -10,8 +10,8 @@ public class RobotMinions extends Minion {
         return isMicroBot;
     }
 
-    public RobotMinions(Player owner, boolean isMicroBot) {
-        super(owner);
+    public RobotMinions(Player owner, boolean isMicroBot, int power) {
+        super(owner, power);
         this.isMicroBot = isMicroBot;
     }
 

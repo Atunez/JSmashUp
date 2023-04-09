@@ -44,7 +44,7 @@ public class Deck {
                 for(String cardName: classSpecifics.keySet()){
                     int count = classSpecifics.get(cardName).getAsInt();
                     // Need better regex..
-                    String className = cardName.replaceAll("^?!([a-zA-Z0-9]*)$", "").replace(" ", "").replace("\'", "");
+                    String className = cardName.replaceAll("[^0-9a-zA-Z]*", "");
                     try {
                         Constructor<Card> c = (Constructor<Card>) Class.forName("Cards." + deckName + "." + className).getDeclaredConstructors()[0];
                         for(int i = 0; i < count; i++){

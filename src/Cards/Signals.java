@@ -5,5 +5,7 @@ public enum Signals {
     PLAYED,
     PRESCORE,
     SCORE,
-    POSTSCORE
+    POSTSCORE,
+    NEWTURN,
+
 }

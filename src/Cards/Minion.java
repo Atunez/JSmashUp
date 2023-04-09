@@ -19,7 +19,8 @@ public class Minion extends Card {
 
     private int power;
     private int counters;
-    public Minion(Player owner) {
+    public Minion(Player owner, int power) {
         super(owner);
+        this.power = power;
     }
 }
