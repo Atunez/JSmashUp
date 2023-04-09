@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Field {
     private ArrayList<Base> inPlayBases;
 
+    public static Turn turnInPlay;
+
     private static Field me;
     private Field(){
         this.inPlayBases = new ArrayList<>();

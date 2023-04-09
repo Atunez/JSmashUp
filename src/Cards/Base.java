@@ -4,6 +4,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Base implements Signal {
@@ -12,6 +14,7 @@ public class Base implements Signal {
     // ScoreVP for every possible position
     protected int[] scoreVP = {0,0,0,0};
     protected Map<Player, ArrayList<Card>> playedCards;
+    protected Map<Player, ArrayList<Card>> actionsOnBase;
 
     public Base(int breakpoint, int[] scoreVP){
         this.breakpoint = breakpoint;
@@ -20,6 +23,9 @@ public class Base implements Signal {
             System.exit(1);
         }
         this.scoreVP = scoreVP;
+
+        this.playedCards = new HashMap<>();
+        this.actionsOnBase = new HashMap<>();
     }
 
     protected int totalPower(Player player){
@@ -83,5 +89,29 @@ public class Base implements Signal {
         }
 
         return bases;
+    }
+
+    @Override
+    public String toString() {
+        return "Base{" +
+                "breakpoint=" + breakpoint +
+                ", scoreVP=" + Arrays.toString(scoreVP) +
+                ", playedCards=" + playedCards +
+                '}';
+    }
+
+    public void playCardOnBase(Card c, Player p){
+        if(c instanceof Minion){
+            if(this.playedCards.get(p) == null){
+                this.playedCards.put(p, new ArrayList<>());
+            }
+            this.playedCards.get(p).add(c);
+        }
+        if(c instanceof Action){
+            if(this.actionsOnBase.get(p) == null){
+                this.actionsOnBase.put(p, new ArrayList<>());
+            }
+            this.actionsOnBase.get(p).add(c);
+        }
     }
 }

@@ -90,4 +90,13 @@ public class Player {
             this.remainingCards.remove(this.remainingCards.size() - 1);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "totalVP=" + totalVP +
+                ", name='" + name + '\'' +
+                ", currentHand=" + currentHand +
+                '}';
+    }
 }

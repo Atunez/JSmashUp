@@ -15,4 +15,6 @@ public class Card implements Signal {
             c.handleSignal(signal, this);
         }
     }
+
+
 }

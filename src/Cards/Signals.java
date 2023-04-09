@@ -6,6 +6,7 @@ public enum Signals {
     PRESCORE,
     SCORE,
     POSTSCORE,
-    NEWTURN,
+    STARTOFTURN,
+    ENDOFTURN
 
 }
