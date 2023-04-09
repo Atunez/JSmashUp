@@ -5,9 +5,10 @@ import Cards.IOInteractions;
 import Cards.Player;
 
 public class Zapbot extends RobotMinions implements OnPlay {
+    // Zapbot - power 2 - You may play an extra minion of power 2 or less.
 
     public Zapbot(Player owner) {
-        super(owner, false);
+        super(owner, false, 2);
     }
 
     @Override

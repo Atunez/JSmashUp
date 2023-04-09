@@ -6,6 +6,8 @@ import Cards.Signal;
 import Cards.Signals;
 
 public class TechCenter extends Action {
+
+    // Tech Center - Choose a base. Draw one card for each of your minions there.
     public TechCenter(Player owner) {
         super(owner);
     }

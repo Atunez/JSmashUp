@@ -6,8 +6,10 @@ import Cards.Field;
 import Cards.Player;
 
 public class MicrobotArchive extends RobotMinions {
+
+    // Microbot Archive - power 1 - Ongoing: After one of your Microbots (including this one) is destroyed, draw a card.
     public MicrobotArchive(Player owner) {
-        super(owner, true);
+        super(owner, true, 1);
     }
 
     public void handleSignal(Signals signal, Card card){

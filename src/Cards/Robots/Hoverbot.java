@@ -5,8 +5,9 @@ import Cards.IOInteractions;
 import Cards.Player;
 
 public class Hoverbot extends RobotMinions implements OnPlay {
+    // Hoverbot - power 3 - Reveal the top card of your deck. If it is a minion, you may play it as an extra minion. Otherwise, return it to the top of your deck.
     public Hoverbot(Player owner) {
-        super(owner, false);
+        super(owner, false, 3);
     }
 
     @Override
